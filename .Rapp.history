@@ -1,0 +1,163 @@
+mean(mtcars$mpg)
+x<-4
+class(x)
+x<-c(4,"a",TRUE)
+class(x)
+x<-c(1,3,4)
+y<-c(3,2,10)
+z<-cbind(x,y)
+z
+cbind(x,y)
+x<-list(2,"a","b",TRUE)
+x[[1]]
+x<-1:4,y<-2:3
+x<1:4
+x<-1:4
+y<-2:3
+x+y
+class(x+y)
+x<-c(17,14,4)
+x[x>10]<-4
+x
+x<-c(17,14,4)
+x[x>10]==4
+read.csv(hw1_data.csv)
+quizd<-read.csv("hw1_data.csv")
+colnames(quizd)
+readlines(quizd,nrow=2)
+readLines(quizd,n=2)
+quizd[1,2]
+quizd[1:2,]
+nrows(quizd)
+nrow(quizd)
+quizd[152:153,]
+quizd[47,"Ozone"]
+quizd[47,]
+y<-quizd$Ozone
+sum(is.na(y))
+sum(complete.cases(y))
+sum(!complete.cases(y))
+complete<-complete.cases(y)
+mean(complete)
+complete
+y
+mean(y)
+mean(y,na.rm=TRUE)
+quizd[quizd$Ozone>31&quizd$Temp>90,]
+subset<-quizd[quizd$Ozone>31&quizd$Temp>90,]
+subset
+mean(subset$Solar.R)
+mean(subset$Solar.R, na.rm=TRUE)
+subset2<-quizd[quizd$Month=6,]
+subset2<-quizd[quizd$Month==6,]
+subset2
+mean(subset2$Temp)
+subset3<-quizd[quizd$Month==5,]
+max(subset3$ozone)
+subset3
+x<-max(subset3$ozone)
+x<-subset3$ozone
+x
+x<-subset3$Ozone
+x
+max(x)
+new<-na.omit(x)
+new
+max(new)
+x <- c(17, 14, 4, 5, 13, 12, 10)
+x
+x[x>10]<-4
+x
+x <- c(17, 14, 4, 5, 13, 12, 10)
+x[x>10]==4
+x
+nrows(quizd)
+nrow(quizd)
+tail(quizd)
+quizd[47,]$Ozone
+sum(is.na(quizd$Ozone))
+args(lm)
+make.power <- function(n) {}
+make.power <- function(n){}
+x <- Sys.time()
+x
+p <- as.POSIXlt(x)
+p
+names(unclass(p))
+p$sec
+p$zone
+p$isdst
+p$mday
+p$wday
+p$yday
+datestring <- c("January 10, 2012 10:40", "December 9, 2011 9:10")
+x <- strptime(datestring, "%B %d, %Y %H:%M")
+x
+help(strptime)
+x
+class(x)
+read.csv("/Users/lulu/R_Coursera/R_Programming/specdata/001.csv")
+help(list.files)
+list.files(/Users/lulu/R_Coursera/R_Programming/specdata)
+list.files("/Users/lulu/R_Coursera/R_Programming/specdata")
+directory="/Users/lulu/R_Coursera/R_Programming/specdata"
+filenames=list.files(path=directory, full.names=TRUE)
+filesnames
+filenames
+filenames=list.files(path=directory, full.names=FALSE)
+filenames
+help(lapply)
+help(fread)
+help("fread")
+help(function)
+help(lapply)
+setwd("/Users/lulu/R_Coursera/R_Programming/specdata)")
+setwd("/Users/lulu/R_Coursera/R_Programming/specdata/")
+wd
+filenames <- list.files(full.names=TRUE)
+filenames
+help(read.csv)
+read.csv(filenames[1], header=TRUE)
+setwd("/Users/lulu/R_Coursera/R_Programming/specdata/")
+getwd
+getwd()
+setwd("/Users/lulu/R_Coursera/R_Programming/specdata")
+getwd()
+complete.cases()
+help(complete.cases)
+setwd("/Users/lulu/R_Coursera/R_Programming/")
+filenames <- list.files("specdata", full.names=TRUE)
+temp <- lapply(filenames[id],function(i){#
+                read.csv(i, header=TRUE)#
+        })
+temp <- lapply(filenames,function(i){#
+                read.csv(i, header=TRUE)#
+        })
+complete.cases(temp[1])
+temp[1]
+x <- temp[1]
+x
+complete.cases(x)
+do.call(complete.cases, temp)
+df <- do.call(complete.cases, temp)
+temp <- read.csv(filenames[1])
+temp
+n <- complete.cases(temp)
+n
+sum(n)
+a <- array(rnorm(2*2*10),c(2,2,10))
+a
+"?gl"
+help(gl)
+x <- rnorm(10)
+x
+f1 <- gl(2,5)
+f2 <- gl(5,2)
+f1
+f2
+help(str)
+split(x,f1)
+split(x,f2)
+split(x,list(f1,f2))
+str(split(x,list(f1,f2)))
+split(x,list(f1,f2),drop=TRUE)

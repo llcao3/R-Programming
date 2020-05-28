@@ -1,0 +1,294 @@
+
+R version 3.6.3 (2020-02-29) -- "Holding the Windsock"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.70 (7735) x86_64-apple-darwin15.6.0]
+
+[History restored from /Users/lulu/.Rapp.history]
+
+> x<-4
+> class(x)
+[1] "numeric"
+> x<-c(4,"a",TRUE)
+> class(x)
+[1] "character"
+> x<-c(1,3,4)
+> y<-c(3,2,10)
+> z<-cbind(x,y)
+> z
+     x  y
+[1,] 1  3
+[2,] 3  2
+[3,] 4 10
+> cbind(x,y)
+     x  y
+[1,] 1  3
+[2,] 3  2
+[3,] 4 10
+> x<-list(2,"a","b",TRUE)
+> x[[1]]
+[1] 2
+> x<-1:4,y<-2:3
+Error: unexpected ',' in "x<-1:4,"
+> x<1:4
+[1] FALSE    NA    NA  TRUE
+Warning messages:
+1: NAs introduced by coercion 
+2: NAs introduced by coercion 
+> x<-1:4
+> y<-2:3
+> x+y
+[1] 3 5 5 7
+> class(x+y)
+[1] "integer"
+> x<-c(17,14,4)
+> x[x>10]<-4
+> x
+[1] 4 4 4
+> x<-c(17,14,4)
+> x[x>10]==4
+[1] FALSE FALSE
+> read.csv(hw1_data.csv)
+Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
+  object 'hw1_data.csv' not found
+> quizd<-read.csv("hw1_data.csv")
+> colnames(quizd)
+[1] "Ozone"   "Solar.R" "Wind"    "Temp"    "Month"   "Day"    
+> readlines(quizd,nrow=2)
+Error in readlines(quizd, nrow = 2) : could not find function "readlines"
+> readLines(quizd,n=2)
+Error in readLines(quizd, n = 2) : 'con' is not a connection
+> quizd[1,2]
+[1] 190
+> quizd[1:2,]
+  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+> nrows(quizd)
+Error in nrows(quizd) : could not find function "nrows"
+> nrow(quizd)
+[1] 153
+> quizd[152:153,]
+    Ozone Solar.R Wind Temp Month Day
+152    18     131  8.0   76     9  29
+153    20     223 11.5   68     9  30
+> quizd[47,"Ozone"]
+[1] 21
+> quizd[47,]
+   Ozone Solar.R Wind Temp Month Day
+47    21     191 14.9   77     6  16
+> y<-quizd$Ozone
+> sum(is.na(y))
+[1] 37
+> sum(complete.cases(y))
+[1] 116
+> sum(!complete.cases(y))
+[1] 37
+> complete<-complete.cases(y)
+> mean(complete)
+[1] 0.7581699
+> complete
+  [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE
+ [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+ [25] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+ [37] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE
+ [49]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [61] FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+ [73]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+ [85]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+ [97]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+[109]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+[121]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[133]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[145]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+> y
+  [1]  41  36  12  18  NA  28  23  19   8  NA   7  16  11  14  18  14  34   6
+ [19]  30  11   1  11   4  32  NA  NA  NA  23  45 115  37  NA  NA  NA  NA  NA
+ [37]  NA  29  NA  71  39  NA  NA  23  NA  NA  21  37  20  12  13  NA  NA  NA
+ [55]  NA  NA  NA  NA  NA  NA  NA 135  49  32  NA  64  40  77  97  97  85  NA
+ [73]  10  27  NA   7  48  35  61  79  63  16  NA  NA  80 108  20  52  82  50
+ [91]  64  59  39   9  16  78  35  66 122  89 110  NA  NA  44  28  65  NA  22
+[109]  59  23  31  44  21   9  NA  45 168  73  NA  76 118  84  85  96  78  73
+[127]  91  47  32  20  23  21  24  44  21  28   9  13  46  18  13  24  16  13
+[145]  23  36   7  14  30  NA  14  18  20
+> mean(y)
+[1] NA
+> mean(y,na.rm=TRUE)
+[1] 42.12931
+> quizd[quizd$Ozone>31&quizd$Temp>90,]
+     Ozone Solar.R Wind Temp Month Day
+NA      NA      NA   NA   NA    NA  NA
+NA.1    NA      NA   NA   NA    NA  NA
+69      97     267  6.3   92     7   8
+70      97     272  5.7   92     7   9
+NA.2    NA      NA   NA   NA    NA  NA
+NA.3    NA      NA   NA   NA    NA  NA
+120     76     203  9.7   97     8  28
+121    118     225  2.3   94     8  29
+122     84     237  6.3   96     8  30
+123     85     188  6.3   94     8  31
+124     96     167  6.9   91     9   1
+125     78     197  5.1   92     9   2
+126     73     183  2.8   93     9   3
+127     91     189  4.6   93     9   4
+> subset<-quizd[quizd$Ozone>31&quizd$Temp>90,]
+> subset
+     Ozone Solar.R Wind Temp Month Day
+NA      NA      NA   NA   NA    NA  NA
+NA.1    NA      NA   NA   NA    NA  NA
+69      97     267  6.3   92     7   8
+70      97     272  5.7   92     7   9
+NA.2    NA      NA   NA   NA    NA  NA
+NA.3    NA      NA   NA   NA    NA  NA
+120     76     203  9.7   97     8  28
+121    118     225  2.3   94     8  29
+122     84     237  6.3   96     8  30
+123     85     188  6.3   94     8  31
+124     96     167  6.9   91     9   1
+125     78     197  5.1   92     9   2
+126     73     183  2.8   93     9   3
+127     91     189  4.6   93     9   4
+> mean(subset$Solar.R)
+[1] NA
+> mean(subset$Solar.R, na.rm=TRUE)
+[1] 212.8
+> subset2<-quizd[quizd$Month=6,]
+Error: unexpected '=' in "subset2<-quizd[quizd$Month="
+> subset2<-quizd[quizd$Month==6,]
+> subset2
+   Ozone Solar.R Wind Temp Month Day
+32    NA     286  8.6   78     6   1
+33    NA     287  9.7   74     6   2
+34    NA     242 16.1   67     6   3
+35    NA     186  9.2   84     6   4
+36    NA     220  8.6   85     6   5
+37    NA     264 14.3   79     6   6
+38    29     127  9.7   82     6   7
+39    NA     273  6.9   87     6   8
+40    71     291 13.8   90     6   9
+41    39     323 11.5   87     6  10
+42    NA     259 10.9   93     6  11
+43    NA     250  9.2   92     6  12
+44    23     148  8.0   82     6  13
+45    NA     332 13.8   80     6  14
+46    NA     322 11.5   79     6  15
+47    21     191 14.9   77     6  16
+48    37     284 20.7   72     6  17
+49    20      37  9.2   65     6  18
+50    12     120 11.5   73     6  19
+51    13     137 10.3   76     6  20
+52    NA     150  6.3   77     6  21
+53    NA      59  1.7   76     6  22
+54    NA      91  4.6   76     6  23
+55    NA     250  6.3   76     6  24
+56    NA     135  8.0   75     6  25
+57    NA     127  8.0   78     6  26
+58    NA      47 10.3   73     6  27
+59    NA      98 11.5   80     6  28
+60    NA      31 14.9   77     6  29
+61    NA     138  8.0   83     6  30
+> mean(subset2$Temp)
+[1] 79.1
+> subset3<-quizd[quizd$Month==5,]
+> max(subset3$ozone)
+[1] -Inf
+Warning message:
+In max(subset3$ozone) : no non-missing arguments to max; returning -Inf
+> subset3
+   Ozone Solar.R Wind Temp Month Day
+1     41     190  7.4   67     5   1
+2     36     118  8.0   72     5   2
+3     12     149 12.6   74     5   3
+4     18     313 11.5   62     5   4
+5     NA      NA 14.3   56     5   5
+6     28      NA 14.9   66     5   6
+7     23     299  8.6   65     5   7
+8     19      99 13.8   59     5   8
+9      8      19 20.1   61     5   9
+10    NA     194  8.6   69     5  10
+11     7      NA  6.9   74     5  11
+12    16     256  9.7   69     5  12
+13    11     290  9.2   66     5  13
+14    14     274 10.9   68     5  14
+15    18      65 13.2   58     5  15
+16    14     334 11.5   64     5  16
+17    34     307 12.0   66     5  17
+18     6      78 18.4   57     5  18
+19    30     322 11.5   68     5  19
+20    11      44  9.7   62     5  20
+21     1       8  9.7   59     5  21
+22    11     320 16.6   73     5  22
+23     4      25  9.7   61     5  23
+24    32      92 12.0   61     5  24
+25    NA      66 16.6   57     5  25
+26    NA     266 14.9   58     5  26
+27    NA      NA  8.0   57     5  27
+28    23      13 12.0   67     5  28
+29    45     252 14.9   81     5  29
+30   115     223  5.7   79     5  30
+31    37     279  7.4   76     5  31
+> x<-max(subset3$ozone)
+Warning message:
+In max(subset3$ozone) : no non-missing arguments to max; returning -Inf
+> x<-subset3$ozone
+> x
+NULL
+> x<-subset3$Ozone
+> x
+ [1]  41  36  12  18  NA  28  23  19   8  NA   7  16  11  14  18  14  34   6
+[19]  30  11   1  11   4  32  NA  NA  NA  23  45 115  37
+> max(x)
+[1] NA
+> new<-na.omit(x)
+> new
+ [1]  41  36  12  18  28  23  19   8   7  16  11  14  18  14  34   6  30  11
+[19]   1  11   4  32  23  45 115  37
+attr(,"na.action")
+[1]  5 10 25 26 27
+attr(,"class")
+[1] "omit"
+> max(new)
+[1] 115
+> x <- c(17, 14, 4, 5, 13, 12, 10)
+> x
+[1] 17 14  4  5 13 12 10
+> x[x>10]<-4
+> x
+[1]  4  4  4  5  4  4 10
+> x <- c(17, 14, 4, 5, 13, 12, 10)
+> x[x>10]==4
+[1] FALSE FALSE FALSE FALSE
+> x
+[1] 17 14  4  5 13 12 10
+> nrows(quizd)
+Error in nrows(quizd) : could not find function "nrows"
+> nrow(quizd)
+[1] 153
+> tail(quizd)
+    Ozone Solar.R Wind Temp Month Day
+148    14      20 16.6   63     9  25
+149    30     193  6.9   70     9  26
+150    NA     145 13.2   77     9  27
+151    14     191 14.3   75     9  28
+152    18     131  8.0   76     9  29
+153    20     223 11.5   68     9  30
+> quizd[47,]$Ozone
+[1] 21
+> sum(is.na(quizd$Ozone))
+[1] 37
+> 
